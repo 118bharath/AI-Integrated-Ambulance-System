@@ -1,156 +1,188 @@
-# AI-Integrated-Ambulance-System
+# AI-Integrated Ambulance System
 
-Short description
-This project is an AI-integrated ambulance system (Tkinter GUI + ML models) that trains/classifies sensor/patient data (Decision Tree / Random Forest / KNN), hosts a hospital (server) GUI and communicates with ambulance client(s). The implementation, modules and system requirements are described in the project report. 
+## 📌 Short Description
+This project is an AI-integrated ambulance system developed using **Tkinter GUI** and **Machine Learning models** (Decision Tree, Random Forest, KNN).  
+It includes a **Hospital Server GUI** and an **Ambulance Client GUI**, enabling real-time communication and patient condition classification.  
+All implementation details, modules, and system requirements are described in the project documentation.
 
-Table of contents
+---
 
-Prerequisites
+## 📑 Table of Contents
+- [Prerequisites](#prerequisites-software--hardware)  
+- [Download / Get the Package](#download--get-the-package)  
+- [Local Setup](#local-setup)  
+- [Installing Python & Dependencies](#installing-python--dependencies)  
+- [Running the System](#running-the-system)  
+- [Troubleshooting](#troubleshooting--common-notes)  
+- [Project Notes](#project-notes-references--acknowledgements)
 
-Download / get the package
+---
 
-Local setup 
+## 1) Prerequisites (Software & Hardware)
 
-Installing Python & dependencies
+- **Python 3.7.x** (Recommended: 3.7.4; newer versions may work but this is the tested version)  
+- IDE/Environment: **Python IDLE**, **Anaconda**, **Jupyter**, **VS Code**  
+- Operating System: **Windows** or **Linux**  
+- Minimum Hardware:  
+  - Intel i3 (or equivalent)  
+  - 4 GB RAM  
+  - ~250 GB disk space  
 
-Running the system (server & ambulance client)
+---
 
-Troubleshooting & tips
+## 2) Download / Get the Package
 
-Project notes & references
-
-1) Prerequisites (software & hardware)
-
-Python 3.7.x (the report uses Python 3.7.4). If you use a later 3.x version it will most likely work but 3.7 is the tested version in the report. 
-
-
-A typical environment / IDE: Python IDLE / Anaconda / Jupyter / VS Code. 
-
-
-OS: Windows or Linux.
-
-Minimum hardware: Intel i3 (or comparable), 4 GB RAM, ~250 GB disk (project doesn’t require huge storage). 
-
-
-2) Download the package
-
-If you have a compressed package (zip / tar) or a Git repo:
-
-From Git:
-
-# example
-git clone https://your-repo-url.git
+### Clone the Repository
+```bash
+git clone [https://your-repo-url.git](https://github.com/118bharath/AI-Integrated-Ambulance-System.git)
 cd your-repo-name
+OR Download ZIP
+Download the ZIP file
 
+Extract it
 
-If you received a zip file: extract and cd into the extracted folder.
+Navigate into the extracted project directory
 
-(Place all code, datasets and any provided model files inside the same project folder.)
+Ensure datasets, scripts, and model files remain in the same project folder.
 
-3) Local setup 
-
-Create and activate a virtual environment to avoid dependency conflicts.
+3) Local Setup
+Create and activate a Python virtual environment:
 
 Windows (PowerShell)
-# create venv
+powershell
+
 python -m venv venv
-
-# activate
 .\venv\Scripts\Activate.ps1
-
 macOS / Linux (bash)
+bash
+
 python3 -m venv venv
 source venv/bin/activate
-
-4) Install Python & project dependencies
+4) Installing Python & Dependencies
 4.1 Install Python
+Download Python from:
+https://python.org
+(Ensure you check "Add Python to PATH" during installation.)
 
-If Python is not installed, download from https://python.org
- and install (tick Add Python to PATH). The project report describes installing Python 3.7.4 and verifying with python -V. 
+Verify installation:
 
+bash
 
-4.2 Create requirements.txt (suggested)
+python -V
+4.2 Install Dependencies
+Create a requirements.txt file with:
 
-Based on the report and the source, the project uses these Python packages:
+nginx
 
 numpy
 pandas
 matplotlib
 seaborn
 scikit-learn
-tk (tkinter comes with CPython; usually no pip install required)
+tkinter is included with Python by default.
+Linux users may need to install it manually:
 
+bash
 
-Note: tkinter is typically bundled with standard CPython installations; on some Linux distributions you may need to install OS package python3-tk. The project also uses built-in modules like socket, pickle, and threading (no pip install).
+sudo apt install python3-tk
+Install all dependencies:
 
-You can create requirements.txt with the lines above, then run:
+bash
 
 pip install -r requirements.txt
+OR install individually:
 
-
-Or install individually:
+bash
 
 pip install numpy pandas matplotlib seaborn scikit-learn
+5) Running the System
+5.1 Locate Main Scripts
+The project contains two main applications:
 
+Hospital Server GUI
+(File : hospital_server.py)
 
-(If you use Anaconda, you may prefer conda install for some packages.)
+Ambulance Client GUI
+(File : ambulance_client.py)
 
-Sources describing the modules used and Python environment are in the report.
+If filenames differ, search for:
 
-5) Running the system locally
-5.1 Locate main scripts
+main = tkinter.Tk() → GUI entry point
 
-The report contains hospital (server) GUI source in Chapter 9 and describes an ambulance side GUI as well (figures and implementation). The server script uses Tkinter and scikit-learn to train models and open a GUI. Look for files such as:
+Socket server/client code → communication scripts
 
-hospital_server.py (or similarly named script containing main = tkinter.Tk() and the hospital/server logic)
+5.2 Start Hospital Server
+bash
 
-ambulance_client.py (or similarly named script for the ambulance side)
-
-The hospital/server code and ML GUI flow are shown in the report (Chapter 9).
-
-If filenames differ in the package, open the .py files and look for main = tkinter.Tk() (server GUI) or socket client/server code to identify which file to run.
-
-5.2 Example: run hospital (server)
-
-With your virtual environment active and dependencies installed:
-
-# from project root
 python hospital_server.py
-
-
-This should launch the Tkinter GUI where you can:
+This GUI allows you to:
 
 Upload dataset (CSV)
 
-Preprocess, train Decision Tree / Random Forest / KNN
+Preprocess data
 
-View metrics / confusion matrix and run the cloud/server socket listener (as implemented). 
+Train ML models (Decision Tree / Random Forest / KNN)
 
+View confusion matrix & metrics
 
-5.3 Example: run ambulance client
+Start server-side communication
 
-Open a separate terminal (still with the venv activated) and run the ambulance script:
+5.3 Start Ambulance Client
+In a separate terminal (venv activated):
+
+bash
 
 python ambulance_client.py
+The ambulance GUI allows:
 
+Selecting test dataset
 
-The ambulance client GUI will allow selecting test dataset and reporting to the hospital server (per the report’s figures). Ensure the server is running and that the client uses the correct server IP and port (check client source if you need to change addresses). 
+Predicting patient emergency category
 
+Sending data to hospital server
 
-6) Troubleshooting & common notes
+Ensure:
 
-tkinter errors on Linux: install OS package python3-tk (Debian/Ubuntu: sudo apt install python3-tk).
+The hospital server is running
 
-Port/address: If client‐server communication fails check firewall and that both processes use the same IP/port. The server code uses socket and Thread—verify the HOST/PORT values in the scripts. 
+IP address & port match between client and server
 
+6) Troubleshooting & Common Notes
+Tkinter error on Linux
+Install:
 
-Dataset format: The GUI expects a CSV with features in columns and target as the last column (report examples show target column used for labels). If your CSV headers differ, either rename or update the target column reference in code. 
+bash
 
-Python version issues: The report’s tested version is Python 3.7.4. Newer 3.x versions usually work but you may need to adjust minor package versions. 
+sudo apt install python3-tk
+Client/server connection issues
 
+Check firewall
 
-7) Project notes, references & acknowledgements
+Verify same HOST/PORT values in both scripts
 
-The project report documents software environment, modules used, system requirements and shows the hospital server source and GUI screenshots. Please consult Chapter 6 (Software Environment), Chapter 7 (System Requirements) and Chapter 9 (Source Code) for in-depth details.
+CSV dataset issues
 
-If you want, I can:
+Expected format: features in columns + target as the last column
+
+Rename your label column to target or update code accordingly
+
+Python version mismatches
+
+The system is tested on Python 3.7.4
+
+Newer versions may require tweaking dependency versions
+
+7) Project Notes, References & Acknowledgements
+Refer to the project report for:
+
+Software environment
+
+System requirements
+
+Detailed architecture
+
+GUI screenshots
+
+ML model implementation
+
+Source code explanations
